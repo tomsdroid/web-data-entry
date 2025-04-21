@@ -1,361 +1,192 @@
-<?php
-    session_start();
-?>
-
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Data Entry</title>
-        <!-- Bootstrap Styling -->
-        <link
-            rel="stylesheet"
-            href="./src/css/bs5.css"
-            type="text/css"
-            media="all"
-        />
-        <script
-            src="./src/js/bs5.js"
-            type="text/javascript"
-            charset="utf-8"
-        ></script>
+        <title>Data Entry App</title>
 
-        <!-- Styling -->
+        <!-- Customize Styling -->
         <link
             rel="stylesheet"
             href="./src/css/style.css"
             type="text/css"
             media="all"
         />
+        <!-- End Customize Styling -->
 
-        <!-- Link Box Icon -->
+        <!-- CDN Box Icons -->
         <link
             href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
             rel="stylesheet"
         />
-
-        <!-- Link Favicon -->
-        <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/apple-touch-icon.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/favicon-32x32.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/site.webmanifest" />
+        <!-- End CDN Box Icons -->
+        <!-- Faviocon -->
+        <link rel="shortcut icon" href="./de.png" type="image/x-icon" />
+        <!-- Faviocon -->
+        <!-- QRCode -->
+        <script
+            src="./lib/qrcode/qrcode.js"
+            type="text/javascript"
+            charset="utf-8"
+        ></script>
+        <!-- QRCode -->
     </head>
     <body>
-        <!-- Main Section -->
-        <section class="container-fluid h-100">
+        <!-- Dashboard Section -->
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul class="nav_item">
+                <li class="active" id="dashList">
+                    <i class="bx bx-bar-chart-square"></i>
+                    <span class="link_name">Dashboard</span>
+                </li>
+                <li id="custList">
+                    <i class="bx bx-group"></i>
+                    <span class="link_name">Customers</span>
+                </li>
+                <li id="subsList">
+                    <i class="bx bx-coffee"></i>
+                    <span class="link_name">Subscriptions</span>
+                </li>
+            </ul>
+            <div class="credit"></div>
+            <div class="side_toggle" id="side_toggle">
+                <i class="bx bx-menu-alt-left"></i>
+                <i class="bx bx-x"></i>
+            </div>
+        </aside>
+        <!-- Sidebar -->
+        <!-- Section Main -->
+        <section class="main" id="main">
             <!-- Header -->
-            <header
-                class="navbar navbar-expand-lg bg-primary mt-2 shadow rounded sticky-sm-top mb-3 z-1"
-            >
-                <div class="container-fluid">
-                    <a class="navbar-brand fw-bold text-white" href="/"
-                        >Data Entry</a
-                    >
-                    <button class="btn text-white" type="button" id="btnAlert">
-                        <i
-                            class="bx bx-question-mark fs-3 rounded-circle p-1"
-                            style="border: 1px solid #f1f2f3"
-                        ></i>
-                    </button>
+            <header>
+                <div class="left_header">
+                    <h2 id="titleApp">Data Entry</h2>
+                </div>
+                <div class="right_header">
+                    <!-- Notify -->
+                    <!-- <div class="notify_box" id="btnNotify">
+                        <i class="bx bxs-bell"></i>
+                        <span class="amount_notify">0</span>
+                        <div class="box-container_notify">
+                            <div class="notify_message">
+                                <i class="bx bx-group cust"></i>
+                                <div class="notify-title">
+                                    <h4>New Customer: <br />[username]</h4>
+                                </div>
+                            </div>
+                            <div class="notify_message">
+                                <i class="bx bx-coffee subs"></i>
+                                <div class="notify-title">
+                                    <h4>
+                                        New Subscription: <br />
+                                        [username]
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="notify_message">
+                                <i class="bx bx-group cust"></i>
+                                <div class="notify-title">
+                                    <h4>New Customer: <br />[username]</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- Notify -->
+                    <div class="btn-login_box">
+                        <i class="bx bx-log-out"></i>
+                        <span class="__login-text">Logout</span>
+                    </div>
+                    <!-- Jika Berhasil Login -->
+                    <!-- <div class="img_profile_box" role="button">
+                        <div class="profile_name_role">
+                            <p class="user_name">Aura Gears ID</p>
+                            <sub class="user_role">Administrator</sub>
+                        </div>
+                        <img src="./de.png" alt="User Profile" width="40" />
+                    </div> -->
                 </div>
             </header>
-
-            <!-- Cards -->
-            <div class="card mb-2 shadow">
-                <div class="card-header h5">Number of Customers</div>
-                <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p>Amount: 00</p>
-                        <footer class="blockquote-footer">
-                            Customer data from
-                            <cite title="Source Title">CSV File</cite>
-                        </footer>
-                    </blockquote>
-                </div>
-            </div>
-            <div class="card mb-2 shadow">
-                <div class="card-header h5">Number of Subscription</div>
-                <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p>Amount: 00</p>
-                        <footer class="blockquote-footer">
-                            Customer data from
-                            <cite title="Source Title">CSV File</cite>
-                        </footer>
-                    </blockquote>
-                </div>
-            </div>
-
-            <!-- Action Box -->
-            <div id="actionAddBox" class="card">
-                <div class="card-header">
-                    <span class="h6">Add New: </span>
-                </div>
-                <div class="card-body d-flex gap-3">
-                    <button
-                        id="customer"
-                        class="btn w-100 btn-success d-flex align-items-center justify-content-center gap-2"
-                        data-bs-toggle="modal"
-                        data-bs-target="#addCustModal"
-                    >
-                        <i class="bx bx-group"></i>
-                        Customer
-                    </button>
-                    <button
-                        id="subscription"
-                        class="btn w-100 btn-danger d-flex align-items-center justify-content-center gap-2"
-                        data-bs-toggle="modal"
-                        data-bs-target="#addSubsModal"
-                    >
-                        <i class="bx bx-dollar"></i>
-                        Subscription
-                    </button>
-                </div>
-            </div>
-
-            <sub class="credits d-flex justify-content-center mt-5"
-                >Designed by
-                <a
-                    href="https://instagram.com/tomsdroid/"
-                    class="nav-link"
-                    target="_blank"
-                    >&nbsp;@tomsdroid</a
-                ></sub
-            >
-
-            <!-- Navbar -->
-            <nav class="nav nav-pills fixed-bottom justify-content-around mb-3">
-                <a href="/" class="nav-link active" aria-current="page">Home</a>
-                <a href="/customer.php" class="nav-link" id="customerTab"
-                    >Customers</a
-                >
-                <a href="/subscription.php" class="nav-link" id="subscriptionTab"
-                    >Subscriptions</a
-                >
-            </nav>
-
-            <!-- Modal -->
-            <div
-                class="modal fade"
-                id="searchModal"
-                tabindex="-1"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-            >
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                Searching by
-                            </h1>
-                            <button
-                                type="button"
-                                class="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                            ></button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="" method="get" accept-charset="utf-8">
-                                <div class="form-floating mb-3">
-                                    <input
-                                        type="email"
-                                        class="form-control form-control-sm"
-                                        id="floatingInput"
-                                        placeholder="name@example.com"
-                                    />
-                                    <label for="floatingInput"
-                                        >Email Address</label
-                                    >
+            <!-- Header -->
+            <!-- Main -->
+            <main id="rootContent">
+                <h1 class="ubuntu" id="nameSection">Dashboard</h1>
+                <div class="absolute">
+                    <div class="sinopsis">
+                        <div class="box-card_info">
+                            <div class="card_info">
+                                <div class="inner-card">
+                                    <div class="text-info">
+                                        <p>Current Customers</p>
+                                        <h1 class="ubuntu">
+                                            0<span>cust</span>
+                                        </h1>
+                                    </div>
+                                    <i class="bx bx-group"></i>
                                 </div>
-                            </form>
+                            </div>
+                        </div>
+                        <div class="box-card_info">
+                            <div class="card_info">
+                                <div class="inner-card new_s">
+                                    <div class="text-info">
+                                        <p>Current Subscriptions</p>
+                                        <h1 class="ubuntu">
+                                            0<span>subs</span>
+                                        </h1>
+                                    </div>
+                                    <i class="bx bx-id-card"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card Detail New Customer & Subscription -->
+                    <h1 class="poppins">Latest Customer Data</h1>
+                    <div class="detail-box">
+                        <div class="idcard">
+                            <div class="idcard-front">
+                                <i class="bx bxs-user"></i>
+                                <h1 class="josefin">CUSTOMER</h1>
+                            </div>
+                            <div class="idcard-back">
+                                <h5 class="josefin">CUSTOMER</h5>
+                                <div class="divider"></div>
+                                <p>Name: <span>John Doe</span></p>
+                                <p>E-mail: <span>johndoe@example.com</span></p>
+                                <p>Phone Number: <span>085888291032</span></p>
+                                <p>Status: <span>Active</span></p>
+                                <p>Joined: <span>3 minute ago</span></p>
+                            </div>
+                        </div>
+                        <div class="idcard premium">
+                            <div class="idcard-front">
+                                <img src="./de.png" alt="Logo" width="30" />
+                                <div id="serialNumber">1637520</div>
+                                <span>Design by: @tomsdroid</span>
+                                <i class="bx bxs-user"></i>
+                                <h1 class="josefin">CUSTOMER SUBSCRIPTION</h1>
+                            </div>
+                            <div class="idcard-back">
+                                <h5 class="josefin">CUSTOMER SUBSCRIPTION</h5>
+                                <div class="divider"></div>
+                                <p>Name: <span>Nicholas Gonzales</span></p>
+                                <p>
+                                    E-mail: <span>nicholas@nichzales.com</span>
+                                </p>
+                                <p>Phone Number: <span>0878239800381</span></p>
+                                <p>Status: <span>Active</span></p>
+                                <p class="ubuntu">3 minute ago</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Modal Add Customers -->
-            <div
-                class="modal fade"
-                id="addCustModal"
-                tabindex="-1"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-            >
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                Add New Customers
-                            </h1>
-                            <button
-                                type="button"
-                                class="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                            ></button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="" method="get" accept-charset="utf-8">
-                                <div class="form-floating mb-3">
-                                    <input
-                                        type="text"
-                                        class="form-control form-control-sm"
-                                        id="floatingInput"
-                                        required
-                                        placeholder="John Doe"
-                                    />
-                                    <label for="floatingInput">Full Name</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input
-                                        type="email"
-                                        class="form-control form-control-sm"
-                                        id="floatingInput"
-                                        placeholder="name@example.com"
-                                        required
-                                    />
-                                    <label for="floatingInput"
-                                        >Email Address</label
-                                    >
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input
-                                        type="phone"
-                                        class="form-control form-control-sm"
-                                        id="floatingInput"
-                                        placeholder="0812xxxxxx"
-                                        required
-                                    />
-                                    <label for="floatingInput"
-                                        >Phone Number</label
-                                    >
-                                </div>
-                                <div
-                                    class="form-footer w-100 d-flex justify-content-end"
-                                >
-                                    <button
-                                        type="submit"
-                                        class="btn btn-primary py-2 px-5 fw-bold text-end"
-                                    >
-                                        Submit
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal Add Subscriptions -->
-            <div
-                class="modal fade"
-                id="addSubsModal"
-                tabindex="-1"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-            >
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                Add Customers Subscriptions
-                            </h1>
-                            <button
-                                type="button"
-                                class="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                            ></button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="" method="get" accept-charset="utf-8">
-                                <div class="form-floating mb-3">
-                                    <input
-                                        type="text"
-                                        class="form-control form-control-sm"
-                                        id="floatingInput"
-                                        readonly="true"
-                                        placeholder="John Doe"
-                                    />
-                                    <label for="floatingInput"
-                                        >Customers ID</label
-                                    >
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input
-                                        type="text"
-                                        class="form-control form-control-sm"
-                                        id="floatingInput"
-                                        placeholder="name@example.com"
-                                        required
-                                    />
-                                    <label for="floatingInput"
-                                        >Customers Name</label
-                                    >
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input
-                                        type="text"
-                                        class="form-control form-control-sm"
-                                        id="floatingInput"
-                                        placeholder="Mk3802xxxx"
-                                        required
-                                    />
-                                    <label for="floatingInput"
-                                        >Subscription ID</label
-                                    >
-                                </div>
-                                <div
-                                    class="form-footer w-100 d-flex justify-content-end"
-                                >
-                                    <button
-                                        type="submit"
-                                        class="btn btn-primary py-2 px-5 fw-bold text-end"
-                                    >
-                                        Submit
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </main>
+            <!-- Main -->
         </section>
-
-        <!-- Flow Button -->
-        <button
-            id="btnAdd"
-            class="btn btn-outline-primary btnActionAdd"
-            type="button"
-        >
-            <i class="bx bx-plus fs-4"></i>
-        </button>
-        <button
-            type="button"
-            class="btn btn-primary btnActionSearch"
-            data-bs-toggle="modal"
-            data-bs-target="#searchModal"
-        >
-            <i class="bx bx-search"></i>
-        </button>
-
+        <!-- End Section Main -->
+        <!-- Dashboard Section -->
+        <!-- Script's -->
         <script
             src="./src/js/script.js"
             type="text/javascript"
